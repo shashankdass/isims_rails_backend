@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  get 'organizations/:org_id/entity/:entity_id/validate_entity_info/:key/:value', to: "organizations#validate_entity_info"
+  get 'organizations/:org_id/entity/:entity_id/update_entity_info/:key/:value', to: "organizations#update_entity_info"
   resources :organizations do
-    resources :entities do
-      member do
-        get 'validate_entity_info'
-      end
-    end
     member do
       get 'org_type'
       get 'is_validator'
-      get  'is_producer'
+      get 'is_producer'
+      get 'get_readable_fields'
+      get 'get_writable_fields'
     end
   end
   resources :entities

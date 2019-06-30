@@ -7,16 +7,46 @@ class OrganizationsController < ApplicationController
     end
   end
 
-  def validate_entity_info
-    organization_id = params[:organization_id]
-    entity_id = params[:id]
+  def get_readable_fields
+    respond_to do |format|
+      format.json { render json: @organization.readable_ids }
+    end
+  end
+
+  def get_writable_fields
+    respond_to do |format|
+      format.json { render json: @organization.writable_ids }
+    end
+  end
+
+  def update_entity_info
+    organization_id = params[:org_id]
+    entity_id = params[:entity_id]
     key = params[:key]
     value = params[:value]
-    org = Organization.find(organization_id)
-    entity = Entity.find(entity_id)
+    org = Organization.find(organization_id.to_i)
+    entity = Entity.find(entity_id.to_i)
     respond_to do |format|
-      if org.readable_ids.include? key
-        if entity[key] == value
+      if org.writable_ids.split(",").include? key
+        entity[key] = value
+        entity.save!
+        format.json { render json: true, status: :ok }
+      else
+        format.json { render json: false, status: :ok }
+      end
+    end
+  end
+
+  def validate_entity_info
+    organization_id = params[:org_id]
+    entity_id = params[:entity_id]
+    key = params[:key]
+    value = params[:value]
+    org = Organization.find(organization_id.to_i)
+    entity = Entity.find(entity_id.to_i)
+    respond_to do |format|
+      if org.readable_ids.split(",").include? key
+        if "#{entity[key]}" == value
           format.json { render json: true, status: :ok }
         else
           format.json { render json: false, status: :ok }
@@ -26,6 +56,7 @@ class OrganizationsController < ApplicationController
       end
     end
   end
+
   def is_validator
     respond_to do |format|
       format.json { render json: @organization.is_validator, status: :ok }
