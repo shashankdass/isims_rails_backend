@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Entities</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Dob</th>
+      <th>Education specialization</th>
+      <th>Employer</th>
+      <th>Place of birth</th>
+      <th>Current resident country</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @entities.each do |entity| %>
+      <tr>
+        <td><%= entity.name %></td>
+        <td><%= entity.age %></td>
+        <td><%= entity.dob %></td>
+        <td><%= entity.education_specialization %></td>
+        <td><%= entity.employer %></td>
+        <td><%= entity.place_of_birth %></td>
+        <td><%= entity.current_resident_country %></td>
+        <td><%= link_to 'Show', entity %></td>
+        <td><%= link_to 'Edit', edit_entity_path(entity) %></td>
+        <td><%= link_to 'Destroy', entity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Entity', new_entity_path %>

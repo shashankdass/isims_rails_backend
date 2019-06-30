@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  readable_ids: MyString
+  writable_ids: MyString
+  is_producer: false
+  is_validator: false
+
+two:
+  name: MyString
+  type: 
+  readable_ids: MyString
+  writable_ids: MyString
+  is_producer: false
+  is_validator: false

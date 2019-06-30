@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entity.name %>
+</p>
+
+<p>
+  <strong>Age:</strong>
+  <%= @entity.age %>
+</p>
+
+<p>
+  <strong>Dob:</strong>
+  <%= @entity.dob %>
+</p>
+
+<p>
+  <strong>Education specialization:</strong>
+  <%= @entity.education_specialization %>
+</p>
+
+<p>
+  <strong>Employer:</strong>
+  <%= @entity.employer %>
+</p>
+
+<p>
+  <strong>Place of birth:</strong>
+  <%= @entity.place_of_birth %>
+</p>
+
+<p>
+  <strong>Current resident country:</strong>
+  <%= @entity.current_resident_country %>
+</p>
+
+<%= link_to 'Edit', edit_entity_path(@entity) %> |
+<%= link_to 'Back', entities_path %>
